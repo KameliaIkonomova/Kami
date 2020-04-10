@@ -1,0 +1,16 @@
+class Ui_Form(object):
+    
+    def checkDate(self):
+        self.today = date.today()
+        self.date1 = self.today.strftime("%Y-%m-%d")
+        connection = sqlite3.connect("login.db")
+        date2 = connection.execute("SELECT * FROM ELECTION_DATE")
+        date2 = (date2.fetchone()[0])
+        return self.date1 > date2
+
+    def sumbmission_screen(self):
+        self.window = QtWidgets.QWidget()
+        self.ui = Ui_Form2()
+        self.ui.setupUi2(self.window)
+        Form.hide()
+        self.window.show()
